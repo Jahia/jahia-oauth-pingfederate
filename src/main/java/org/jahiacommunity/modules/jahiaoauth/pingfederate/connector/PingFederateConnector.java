@@ -16,7 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Component(service = {PingFederateConnector.class, OAuthConnectorService.class, ConnectorService.class}, property = {JahiaAuthConstants.CONNECTOR_SERVICE_NAME + "=" + PingFederateConnector.KEY}, immediate = true)
@@ -25,7 +25,6 @@ public class PingFederateConnector implements OAuthConnectorService {
 
     public static final String KEY = "PingFederateApi";
     private static final String DOMAIN = "domain";
-    protected static final String SSO_LOGIN = "matricule";
 
     private JahiaOAuthService jahiaOAuthService;
     private JahiaSitesService jahiaSitesService;
@@ -74,11 +73,6 @@ public class PingFederateConnector implements OAuthConnectorService {
 
     @Override
     public List<ConnectorPropertyInfo> getAvailableProperties() {
-        List<ConnectorPropertyInfo> availableProperties = new ArrayList<>();
-        availableProperties.add(new ConnectorPropertyInfo(SSO_LOGIN, "string"));
-        availableProperties.add(new ConnectorPropertyInfo("email", "email"));
-        availableProperties.add(new ConnectorPropertyInfo("pi.sri", "string"));
-        availableProperties.add(new ConnectorPropertyInfo("sub", "string"));
-        return availableProperties;
+        return Collections.singletonList(new ConnectorPropertyInfo("sub", "string"));
     }
 }
