@@ -18,6 +18,7 @@
     <template:addResources type="javascript" resources="i18n/jahia-oauth-pingfederate-i18n.js"/>
 </c:if>
 <template:addResources type="javascript" resources="pingFederate-connector-controller.js"/>
+<template:addResources type="css" resources="styles.css"/>
 
 <md-card ng-controller="PingFederateController as pingFederate" ng-init="pingFederate.init()">
     <div layout="row">
