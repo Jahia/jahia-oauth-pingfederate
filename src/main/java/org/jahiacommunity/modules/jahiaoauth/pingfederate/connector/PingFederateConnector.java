@@ -25,6 +25,7 @@ public class PingFederateConnector implements OAuthConnectorService {
 
     public static final String KEY = "PingFederateApi";
     private static final String DOMAIN = "domain";
+    public static final String SSO_LOGIN = "sub";
 
     private JahiaOAuthService jahiaOAuthService;
     private JahiaSitesService jahiaSitesService;
@@ -73,6 +74,6 @@ public class PingFederateConnector implements OAuthConnectorService {
 
     @Override
     public List<ConnectorPropertyInfo> getAvailableProperties() {
-        return Collections.singletonList(new ConnectorPropertyInfo("sub", "string"));
+        return Collections.singletonList(new ConnectorPropertyInfo(SSO_LOGIN, "string"));
     }
 }
