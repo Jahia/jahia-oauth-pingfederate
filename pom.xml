@@ -54,7 +54,7 @@
     <groupId>org.jahiacommunity.modules</groupId>
     <artifactId>jahia-oauth-pingfederate</artifactId>
     <name>Jahia OAuth PingFederate</name>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.1</version>
     <packaging>bundle</packaging>
     <description>This is the custom module (Jahia OAuth PingFederate Module) for running on a Jahia server.
     </description>
@@ -63,7 +63,7 @@
         <connection>scm:git:git@github.com:Jahia/jahia-oauth-pingfederate.git</connection>
         <developerConnection>scm:git:git@github.com:Jahia/jahia-oauth-pingfederate.git</developerConnection>
         <url>https://github.com/Jahia/jahia-oauth-pingfederate</url>
-        <tag>HEAD</tag>
+        <tag>jahia-oauth-pingfederate-1.0.1</tag>
     </scm>
 
     <properties>
