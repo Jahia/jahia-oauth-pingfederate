@@ -3,6 +3,7 @@ package org.jahiacommunity.modules.jahiaoauth.pingfederate.connector;
 import org.jahia.api.Constants;
 import org.jahia.api.content.JCRTemplate;
 import org.jahia.modules.jahiaauth.service.ConnectorConfig;
+import org.jahia.modules.jahiaauth.service.JahiaAuthConstants;
 import org.jahia.modules.jahiaauth.service.SettingsService;
 import org.jahia.modules.jahiaoauth.service.JahiaOAuthService;
 import org.jahia.params.valves.LoginUrlProvider;
@@ -52,6 +53,14 @@ public class PingFederateLoginUrlProvider implements LoginUrlProvider {
         }
         ConnectorConfig connectorConfig = settingsService.getConnectorConfig(siteKey, PingFederateConnector.KEY);
         if (connectorConfig == null) {
+            // fallback to systemsite
+            connectorConfig = settingsService.getConnectorConfig(JahiaSitesService.SYSTEM_SITE_KEY, PingFederateConnector.KEY);
+            if (connectorConfig == null) {
+                // no configuration found
+                return null;
+            }
+        }
+        if (!connectorConfig.getBooleanProperty(JahiaAuthConstants.PROPERTY_IS_ENABLED)) {
             return null;
         }
         return jahiaOAuthService.getAuthorizationUrl(connectorConfig, sessionId, null);
@@ -88,10 +97,10 @@ public class PingFederateLoginUrlProvider implements LoginUrlProvider {
                 }
 
                 jahiaSite = jahiaSitesService.getDefaultSite(systemSession);
-                if (jahiaSite == null) {
-                    return null;
+                if (jahiaSite != null) {
+                    return jahiaSite.getSiteKey();
                 }
-                return jahiaSite.getSiteKey();
+                return JahiaSitesService.SYSTEM_SITE_KEY;
             });
         } catch (RepositoryException e) {
             if (logger.isDebugEnabled()) {

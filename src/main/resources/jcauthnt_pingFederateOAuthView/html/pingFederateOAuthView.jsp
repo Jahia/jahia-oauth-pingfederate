@@ -67,7 +67,7 @@
 
                 <md-input-container flex>
                     <label message-key="label.apiSecret"></label>
-                    <input type="text" ng-model="pingFederate.apiSecret" name="apiSecret" required/>
+                    <input type="password" ng-model="pingFederate.apiSecret" name="apiSecret" required/>
                     <div ng-messages="pingFederateForm.apiSecret.$error" role="alert">
                         <div ng-message="required" message-key="error.apiSecret.required"></div>
                     </div>
