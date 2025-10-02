@@ -79,7 +79,7 @@ public class PingFederateCallbackAction extends Action {
                 if (StringUtils.isBlank(returnUrl)) {
                     returnUrl = (String) httpServletRequest.getSession().getAttribute(SESSION_REQUEST_URI);
                 }
-                if (StringUtils.isBlank(returnUrl) || StringUtils.endsWith(returnUrl, "/start") || StringUtils.endsWith(returnUrl, "/jahia/dashboard")) {
+                if (StringUtils.isBlank(returnUrl)) {
                     returnUrl = jcrTemplate.doExecuteWithSystemSessionAsUser(null, renderContext.getWorkspace(), renderContext.getMainResourceLocale(), systemSession ->
                             jahiaSitesService.getSiteByKey(siteKey, systemSession).getHome().getUrl());
                 }
